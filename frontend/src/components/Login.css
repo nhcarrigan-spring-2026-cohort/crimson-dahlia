@@ -1,0 +1,164 @@
+/* SCREEN BACKGROUND */
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: #f0f0f0;
+}
+
+/* MAIN WHITE CARD */
+.login-card {
+  background: white;
+  padding: 28px;
+  border-radius: 20px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* LOGO BOX */
+.logo-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* EXACT LOGO STYLE */
+.logo-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #2dd4bf; /* exact teal color */
+  display: grid;
+  place-items: center;
+}
+
+/* TEXT STYLES */
+.title {
+  margin: 6px 0;
+  font-size: 22px;
+  color: #0f172a;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+/* FORM BOX */
+.form-box {
+  background: #f5f5f5;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: left;
+}
+
+/* HEADINGS & LABELS */
+.form-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.form-box label {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #334155;
+}
+
+/* INPUTS (VISIBLE TYPING) */
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 10px 0;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0; /* light border */
+  background: white;
+  color: #0f172a;
+  font-size: 15px;
+  outline: none;          /* browser ka blue outline hata */
+  transition: all 0.15s ease;
+}
+
+/* ======= Figma-style focus ======= */
+.input:focus {
+  border-color: #22c55e;  /* green border */
+  box-shadow: 0 0 0 2px rgba(34,197,94,0.15); /* very soft glow */
+  background: white;      /* IMPORTANT: grey nahi hoga */
+}
+
+.input::placeholder {
+  color: #94a3b8;
+}
+
+/* LOGIN BUTTON */
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: #4ade80; 
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* CREATE ACCOUNT BUTTON */
+.btn-secondary {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: white;
+  color: #22c55e;
+  border: 1px solid #22c55e;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* DIVIDER */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.divider:before,
+.divider:after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider span {
+  margin: 0 10px;
+  color: #777;
+  font-size: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .login-card {
+    width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 90%;
+    padding: 18px;
+  }
+
+  .logo-circle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}
