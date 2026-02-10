@@ -56,7 +56,7 @@ const CreateAccount = () => {
 
         <button 
           className="btn-primary"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/community-aid")}
         >
           Create Account
         </button>
