@@ -4,6 +4,8 @@
 }
 
 .create-account-container {
+  width: 100vw;
+  max-width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -23,10 +25,6 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s;
   margin: 0 auto;
-}
-
-.create-account-card:hover {
-  transform: translateY(-2px);
 }
 
 .logo-box {

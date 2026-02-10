@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
-import CommunityAid from "./components/CommunityAid";
 
 function App() {
   return (
@@ -9,7 +8,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/community-aid" element={<CommunityAid />} />
       </Routes>
     </BrowserRouter>
   );
