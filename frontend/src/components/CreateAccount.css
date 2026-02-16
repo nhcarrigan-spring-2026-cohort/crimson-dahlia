@@ -22,7 +22,8 @@
   width: 100%;
   max-width: 600px;
   text-align: center;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s;
   margin: 0 auto;
 }
@@ -78,6 +79,8 @@
   font-size: 15px;
   background: white;
   transition: border-color 0.2s, box-shadow 0.2s;
+  color: #111827;
+  caret-color: #111827;
 }
 
 .form-input:focus {
@@ -88,6 +91,40 @@
 
 .form-input::placeholder {
   color: #9ca3af;
+  opacity: 1;
+}
+
+.password-rules {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: grid;
+  gap: 6px;
+}
+
+.password-rules li {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.rule-icon {
+  width: 18px;
+  text-align: center;
+  margin-right: 8px;
+  font-weight: 700;
+}
+
+.rule-text {
+  color: #6b7280;
+}
+
+.rule-ok .rule-text {
+  color: #065f46;
+}
+
+.rule-not-ok .rule-text {
+  color: #991b1b;
 }
 
 .btn-primary {
@@ -100,12 +137,17 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, opacity 0.2s;
   margin-bottom: 12px;
 }
 
 .btn-primary:hover {
   background: #059669;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
@@ -141,7 +183,6 @@
   text-decoration: underline;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .create-account-container {
     padding: 16px;
