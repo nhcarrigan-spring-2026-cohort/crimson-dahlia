@@ -1,79 +1,43 @@
-import { useNavigate } from "react-router-dom";
 import "./CreateAccount.css";
+import heroImg from "../assets/image/heroImg.webp";
+import logo from "../assets/icons/logo.svg";
 
-const CreateAccount = () => {
-  const navigate = useNavigate();
-
+function CreateAccount() {
   return (
-    <div className="create-account-container">
-      <div className="create-account-card">
-        <div className="logo-box">
-          <div className="logo-circle">
-            🤝
+    <div className="container">
+      <div className="left-section">
+        <img
+          src={heroImg}
+          alt="Community of people helping each others."
+          id="hero--img"
+        />
+
+        <div className="logo">
+          <img src={logo} alt="Logo" />
+          <span>Community Aid</span>
+        </div>
+
+        <div className="caption">
+          <h1>Help your neighbors, build your community.</h1>
+        </div>
+      </div>
+
+      <div className="right-section">
+        <h2>Create an account</h2>
+
+        <form className="create-account-form">
+          <input type="text" placeholder="Name" required />
+          <input type="email" placeholder="Email address" required />
+          <input type="password" placeholder="Password" required />
+
+          <div className="buttons">
+            <button type="submit">Sign Up</button>
+            <button type="button">Sign In</button>
           </div>
-        </div>
-
-        <h2 className="title">Create Account</h2>
-        <p className="subtitle">
-          Join your community and start helping
-        </p>
-
-        <div className="form-group">
-          <label className="form-label">Full name</label>
-          <input
-            type="text"
-            placeholder="Enter your full name"
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label">Email address</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            placeholder="Create a password"
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label">Confirm password</label>
-          <input
-            type="password"
-            placeholder="Confirm your password"
-            className="form-input"
-          />
-        </div>
-
-        <button 
-          className="btn-primary"
-          onClick={() => navigate("/community-aid")}
-        >
-          Create Account
-        </button>
-
-        <button
-          className="btn-secondary"
-          onClick={() => navigate("/")}
-        >
-          Already have an account? Sign In
-        </button>
-
-        <p className="terms">
-          By continuing, you agree to our <span>Terms of Service</span>
-        </p>
+        </form>
       </div>
     </div>
   );
-};
+}
 
 export default CreateAccount;
