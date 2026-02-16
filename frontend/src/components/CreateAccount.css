@@ -195,18 +195,19 @@ input:-webkit-autofill:active {
     bottom: 4rem;
     left: 3rem;
     right: 3rem;
+    width: auto;
   }
 
   .caption h1 {
-    font-size: clamp(2rem, 3.5vw, 5.2rem);
+    font-size: clamp(2rem, 4.35vw, 6rem);
     font-family: var(--font-accent);
     font-weight: var(--weight-extrabold);
     background: #e8e8e8;
-    padding: 1.2rem 1.4rem 1.6rem;
+    padding: 1.2rem 1.4rem 1.8rem;
     border-radius: 1rem;
     text-align: start;
     border-top-right-radius: 3rem;
-    display: inline-flex;
+    text-wrap: balance;
   }
 
   .caption h1,
@@ -260,5 +261,9 @@ input:-webkit-autofill:active {
 
   .right-section {
     padding-right: 0;
+  }
+
+  .caption h1 {
+    padding-bottom: 2.2rem;
   }
 }
