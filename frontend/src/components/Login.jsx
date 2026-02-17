@@ -1,68 +1,37 @@
-import "./Login.css";
+import React from 'react';
+import './Login.css';
+import communityImg from '../assets/community-aid-bg.jpg';
+import logo from '../assets/logo.png';
 
 export default function Login() {
   return (
     <div className="login-page">
-
-      <div className="login-card">
-
-        {/* LOGO EXACT STYLE */}
-        <div className="logo-box">
-          <div className="logo-circle">
-            <svg 
-              width="28" 
-              height="28" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                d="M12 3L4 8v8l8 5 8-5V8l-8-5z" 
-                stroke="white" 
-                strokeWidth="2"
-                strokeLinejoin="round"
-              />
-              <path 
-                d="M8 12l4 2 4-2" 
-                stroke="white" 
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
+      <div className="login-container">
+        {/* Left Side: Image & Branding */}
+        <div className="login-image-section" style={{ backgroundImage: `url(${communityImg})` }}>
+          <div className="brand-logo">
+            <img src={logo} alt="Community Aid" className="logo-icon" />
+            <span>Community Aid</span>
+          </div>
+          
+          <div className="image-overlay-text">
+            <h1>Help your neighbors,<br />build your community.</h1>
           </div>
         </div>
 
-        <h2 className="title">Community Aid</h2>
-        <p className="subtitle">
-          Help your neighbors, build community
-        </p>
-
-        <div className="form-box">
-          <h3>Welcome Back</h3>
-
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="you@example.com"
-            className="input"
-          />
-
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="••••••••"
-            className="input"
-          />
-
-          <button className="btn-primary">Login</button>
-
-          <div className="divider">
-            <span>or</span>
+        {/* Right Side: Sign In Form */}
+        <div className="login-form-section">
+          <div className="form-wrapper">
+            <h2>Sign In</h2>
+            <form>
+              <input type="email" placeholder="Email address" className="login-input" />
+              <input type="password" placeholder="Password" className="login-input" />
+              
+              <button type="submit" className="btn-sign-in">Sign In</button>
+              <button type="button" className="btn-create-account">Create an account</button>
+            </form>
           </div>
-
-          <button className="btn-secondary">Create Account</button>
         </div>
-
       </div>
     </div>
   );
