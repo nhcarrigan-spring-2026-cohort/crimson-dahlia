@@ -52,3 +52,4 @@ The key word here is **_accessible_** — this should be easy for anyone to use,
 - **Emlanis**: [github.com/emlanis](https://github.com/emlanis)
 - **Prathmesh**: [github.com/prathmesh-b](https://github.com/prathmesh-b)
 - **Eddie**: [github.com/EddiePulido](https://github.com/EddiePulido)
+- **Nikil**: [github.com/Nikil-D-Gr8](https://github.com/Nikil-D-Gr8)
