@@ -2,6 +2,7 @@ alembic==1.18.4
 blinker==1.9.0
 click==8.3.1
 Flask==3.1.2
+flask-cors==6.0.2
 Flask-Migrate==4.1.0
 Flask-SQLAlchemy==3.1.1
 itsdangerous==2.2.0
