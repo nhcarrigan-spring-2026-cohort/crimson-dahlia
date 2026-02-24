@@ -15,7 +15,7 @@ class Task(db.Model):
 
     created_at = db.Column(db.DateTime, default= lambda: datetime.now(timezone.utc))
 
-    creator_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True) #Changed nullable to true until we have authentication in place so I can test
+    creator_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     accepted_by_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
 
     creator = db.relationship("User",foreign_keys=[creator_id])
