@@ -2,25 +2,25 @@ import React, { useState, useEffect } from "react";
 import "./MyTasks.css";
 import logo from "../assets/logo.png";
 
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(
+function useIsScreenIsTooSmall() {
+  const [screenIsTooSmall, setscreenIsTooSmall] = useState(
     window.innerWidth < 768 || window.innerHeight < 550
   );
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768 || window.innerHeight < 550);
+      setscreenIsTooSmall(window.innerWidth < 768 || window.innerHeight < 550);
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return isMobile;
+  return screenIsTooSmall;
 }
 
 function MyTasks() {
-  const isMobile = useIsMobile();
+  const screenIsTooSmall = useIsScreenIsTooSmall();
 
   
 
@@ -125,6 +125,17 @@ function MyTasks() {
     }
   };
 
+  const handleDelete = () => {
+    if (window.confirm("This will permanently delete the task and associated data. Are you sure you want to proceed?")) { // Simple confirmation dialog before deleting a task. In a real application, consider using a more user-friendly modal for confirmation.
+        try {
+            setJobs(prevJobs => prevJobs.filter((_, index) => index !== selectedJobIndex));
+            setSelectedJobIndex(0); // Reset selected job index after deletion
+        } catch (error) {
+            console.error("Error deleting job:", error);
+        }
+    }
+  };
+
   // Filter the applicants for the selected job based on the applicant IDs in the job's applicants array. This creates a list of applicant objects that can be displayed in the UI when viewing a job's details.
   // (we can probably remove this during backend integration? idk yet)
   const jobApplicants = selectedJob ? applicants.filter(applicant =>
@@ -136,9 +147,9 @@ function MyTasks() {
     job.title.toLowerCase().includes(searchTerm.toLowerCase()) || job.description.toLowerCase().includes(searchTerm.toLowerCase()) || job.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())) 
   );
 
-  if (isMobile) {
+  if (screenIsTooSmall) {
     return (
-      <div className="mobile-message">
+      <div className="screen-too-small-message">
         <h2>Please use Community Aid on a larger screen.</h2>
         <p>We are working hard to make Community Aid accessible on all devices. In the meantime, please access this site on a desktop or laptop computer.</p>
       </div>
@@ -148,6 +159,7 @@ function MyTasks() {
 
   return (
     <div className="dashboard-container">
+      {/* SIDE BAR */}
       <div className="sidebar">
         <div className="logo">
           <img src={logo} alt="Community Aid" className="logo-img" />
@@ -160,12 +172,14 @@ function MyTasks() {
         </ul>
       </div>
 
+      {/* MY TASKS PAGE */}
       <div className="main-content">
+        {/* SEARCH SECTION */}
         <div className="search-section">
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search Tasks"
+              placeholder="Search tasks by keywords.."
               className="search-bar"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -180,6 +194,7 @@ function MyTasks() {
                 className="job-card"
               >
                 <strong>No Tasks Found</strong>
+                <p>Expand your search or add a new task.</p>
               </div>
             ) : (
             filteredJobs.map((job, index) => (
@@ -195,6 +210,8 @@ function MyTasks() {
             )}
           </div>
         </div>
+
+        {/*  TASK VIEWER */}
 
         <div className="job-details">
           <h2>{selectedJob.title}</h2>
@@ -285,8 +302,10 @@ function MyTasks() {
                 {selectedJob.status === "in progress" && <button className="apply-btn" onClick={handleComplete} alt="Mark this task as completed">Mark Completed</button>}
                 
             </div>
+            <button className="delete-btn" onClick={handleDelete} alt="Delete this task">Delete Task</button> 
+
+
         </div>
-        
       </div>
     </div>
   );

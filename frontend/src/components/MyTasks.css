@@ -20,10 +20,25 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-@media screen and (max-height: 900px) {
+@media screen and (max-height: 550px) {
     .main-content {
         overflow-y: scroll;
     }
+    * {
+        background-color: #00332e;
+    }
+}
+
+.screen-too-small-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #00332e;
+    color: white;
 }
 
 /* ===== Sidebar ===== */
@@ -371,4 +386,18 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
+}
+
+.delete-btn {
+    background: none;
+    color: rgb(73, 28, 28);
+    text-decoration: underline;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin: auto;
+    margin-top: 10px;
+    padding: 5px;
 }
