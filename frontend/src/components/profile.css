@@ -1,0 +1,370 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0d2818;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.profile-container {
+    display: flex;
+    min-height: 100vh;
+    background: #0d2818;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #0f3d2e, #1a5238);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.logo-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    object-fit: cover;
+}
+
+.logo h2 {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu li {
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.75);
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.menu li.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+.menu li:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: #333;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.top-header {
+    background: #2a7a5b;
+    padding: 18px 24px;
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+/* ===== PROFILE BODY ===== */
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    align-items: stretch;
+    width: 100%;
+    background: #1a362d;
+    padding: 0;
+    border-radius: 12px;
+    color: #e0e0e0;
+    overflow: hidden;
+    margin: 0;
+}
+
+.profile-content {
+    display: flex;
+    gap: 60px;
+    flex: 1;
+    align-items: flex-start;
+    padding: 40px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 45%;
+}
+
+.bio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.references-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-label {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.bio-box {
+    width: 100%;
+    height: 130px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 12px;
+    resize: none;
+    color: #333;
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+}
+
+.bio-box:focus {
+    outline: none;
+    background: #f8f9fa;
+    box-shadow: 0 0 0 2px rgba(42, 122, 91, 0.3);
+}
+
+.char-count {
+    font-size: 14px;
+    color: #a0a0a0;
+    text-align: right;
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    pointer-events: none;
+}
+
+.ref-input {
+    width: 100%;
+    height: 60px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0 12px;
+    color: #333;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.ref-input:focus {
+    outline: none;
+    background: #f8f9fa;
+    box-shadow: 0 0 0 2px rgba(42, 122, 91, 0.3);
+}
+
+/* ===== RIGHT SECTION ===== */
+.right-section {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.skills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.add-skill {
+    width: 40px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: #2a7a5b;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    line-height: 1;
+}
+
+.add-skill:hover {
+    background: #23674d;
+    transform: scale(1.1);
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 5px;
+    margin-top: -35px;
+}
+
+.skill-pill {
+    background: #4a5c7a;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.skill-pill:hover {
+    background: #3d4f6a;
+}
+
+.more-skills {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.contact-box {
+    margin-bottom: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.contact-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #e0e0e0;
+}
+
+.contact-box p:not(.contact-title) {
+    font-size: 15px;
+    color: #e0e0e0;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.joined {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.delete {
+    font-size: 15px;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 8px 0;
+    border: none;
+    background: none;
+    text-align: left;
+}
+
+.delete:hover {
+    color: #ff5252;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .profile-body {
+        gap: 60px;
+    }
+
+    .right-section {
+        width: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-body {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .right-section {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .sidebar {
+        width: 240px;
+    }
+
+    .main-content {
+        padding: 24px;
+    }
+}
