@@ -299,6 +299,7 @@ body {
     min-height: 3rem;
     overflow-y: scroll;
     scrollbar-width: none;
+    color: #111;
 }
 
 .char-count {
