@@ -78,6 +78,8 @@
   font-size: 15px;
   background: white;
   transition: border-color 0.2s, box-shadow 0.2s;
+  color: #111827;
+  caret-color: #111827;
 }
 
 .form-input:focus {
@@ -88,6 +90,7 @@
 
 .form-input::placeholder {
   color: #9ca3af;
+  opacity: 1;
 }
 
 .btn-primary {

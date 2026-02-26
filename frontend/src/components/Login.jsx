@@ -2,8 +2,10 @@ import React from 'react';
 import './Login.css';
 import communityImg from '../assets/community-aid-bg.jpg';
 import logo from '../assets/logo.png';
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   return (
     <div className="login-page">
       <div className="login-container">
@@ -28,7 +30,7 @@ export default function Login() {
               <input type="password" placeholder="Password" className="login-input" />
               
               <button type="submit" className="btn-sign-in">Sign In</button>
-              <button type="button" className="btn-create-account">Create an account</button>
+              <button type="button" className="btn-create-account" onClick={() => navigate("/create-account")}>Create an account</button>
             </form>
           </div>
         </div>

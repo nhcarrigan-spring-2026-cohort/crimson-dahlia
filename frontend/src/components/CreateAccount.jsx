@@ -8,19 +8,17 @@ const CreateAccount = () => {
     <div className="create-account-container">
       <div className="create-account-card">
         <div className="logo-box">
-          <div className="logo-circle">
-            🤝
-          </div>
+          <div className="logo-circle">🤝</div>
         </div>
 
         <h2 className="title">Create Account</h2>
-        <p className="subtitle">
-          Join your community and start helping
-        </p>
+        <p className="subtitle">Join your community and start helping</p>
 
-        <div className="form-group">
-          <label className="form-label">Full name</label>
+       <div className="form-group">
+          <label className="form-label" htmlFor="fullName">Full name</label>
           <input
+            id="fullName"
+            name="fullName"
             type="text"
             placeholder="Enter your full name"
             className="form-input"
@@ -28,8 +26,10 @@ const CreateAccount = () => {
         </div>
 
         <div className="form-group">
-          <label className="form-label">Email address</label>
+          <label className="form-label" htmlFor="email">Email address</label>
           <input
+            id="email"
+            name="email"
             type="email"
             placeholder="Enter your email"
             className="form-input"
@@ -37,8 +37,10 @@ const CreateAccount = () => {
         </div>
 
         <div className="form-group">
-          <label className="form-label">Password</label>
+          <label className="form-label" htmlFor="password">Password</label>
           <input
+            id="password"
+            name="password"
             type="password"
             placeholder="Create a password"
             className="form-input"
@@ -46,23 +48,27 @@ const CreateAccount = () => {
         </div>
 
         <div className="form-group">
-          <label className="form-label">Confirm password</label>
+          <label className="form-label" htmlFor="confirmPassword">Confirm password</label>
           <input
+            id="confirmPassword"
+            name="confirmPassword"
             type="password"
             placeholder="Confirm your password"
             className="form-input"
           />
         </div>
 
-        <button 
+        <button
           className="btn-primary"
-          onClick={() => navigate("/community-aid")}
+          type="button"
+          onClick={() => navigate("/dashboard")}
         >
           Create Account
         </button>
 
         <button
           className="btn-secondary"
+          type="button"
           onClick={() => navigate("/")}
         >
           Already have an account? Sign In
