@@ -1,217 +1,315 @@
-* {
-  box-sizing: border-box;
-  font-family: Inter, system-ui, sans-serif;
+body {
+  background: var(--white);
+  color: var(--black);
+  padding: 1rem 1.6rem;
 }
 
-.create-account-container {
-  width: 100vw;
-  max-width: 100%;
-  min-height: 100vh;
-  display: flex;
+.container {
+  min-height: inherit;
   justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding: 20px;
-  overflow-x: hidden;
-}
-
-.create-account-card {
-  background: white;
-  padding: 40px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
-.logo-box {
+.container,
+.logo,
+.create-account-form,
+.buttons {
   display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
+  flex-direction: column;
 }
 
-.logo-circle {
+.left-section #hero--img,
+.right-section h2 {
+  display: none;
+}
+
+.logo,
+.create-account-form,
+.buttons {
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.caption h1,
+.buttons button,
+.create-account-form input,
+.create-account-form input::placeholder {
+  font-family: var(--font-main);
+  font-weight: var(--weight-regular);
+  font-size: 1.4rem;
+}
+
+.logo span,
+.buttons button {
+  font-weight: var(--weight-bold);
+}
+
+.logo img {
   width: 64px;
   height: 64px;
-  border-radius: 16px;
-  background: #10b981;
+}
+
+.logo span {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.caption h1 {
+  margin-block: 0.2rem 0;
+  color: var(--light-text);
+  text-align: center;
+}
+
+.create-account-form {
+  gap: 1.6rem;
+  margin-top: 5rem;
+}
+
+.create-account-form input,
+.buttons {
+  width: 100%;
+  max-width: 320px;
+}
+
+.create-account-form input {
+  padding: 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  outline: none;
+  background: var(--white);
+  color: var(--black);
+  caret-color: var(--black);
+}
+
+.create-account-form input::placeholder {
+  opacity: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--white) inset !important;
+  -webkit-text-fill-color: var(--black) !important;
+}
+
+.password-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 320px;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.password-rules li {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 28px;
+  font-size: 1.3rem;
 }
 
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 8px 0;
+.rule-icon {
+  width: 1.8rem;
+  text-align: center;
+  margin-right: 0.8rem;
+  font-weight: var(--weight-bold);
 }
 
-.subtitle {
-  font-size: 14px;
-  color: #6b7280;
-  margin: 0 0 24px 0;
+.rule-text {
+  color: var(--light-text);
 }
 
-.form-group {
-  margin-bottom: 20px;
-  text-align: left;
+.rule-ok .rule-text {
+  color: #065f46;
 }
 
-.form-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 6px;
+.rule-not-ok .rule-text {
+  color: #991b1b;
 }
 
-.form-input {
+.buttons {
+  margin-top: 3.4rem;
+}
+
+.buttons button {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 15px;
-  background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  padding-block: 1.4rem;
 }
 
-.form-input:focus {
+.buttons button:first-child {
+  background: var(--dark-green);
+  color: var(--white);
+}
+
+.buttons button:first-child:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.buttons button:nth-child(2) {
+  background: transparent;
+  color: var(--black);
+  border: 1px solid var(--border);
+  font-weight: var(--weight-medium);
+}
+
+.buttons button:first-child:hover {
+  background: var(--dark-green-hover);
+}
+
+.buttons button:last-child:hover {
+  background: var(--border);
+}
+
+.buttons button:focus {
   outline: none;
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-.form-input::placeholder {
-  color: #9ca3af;
+.buttons button:first-child:active {
+  background: var(--dark-green-caption);
 }
 
-.btn-primary {
-  width: 100%;
-  padding: 12px 20px;
-  background: #10b981;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-bottom: 12px;
+.buttons button:last-child:active {
+  background: #cdcdcd;
 }
 
-.btn-primary:hover {
-  background: #059669;
-}
-
-.btn-secondary {
-  width: 100%;
-  padding: 10px 20px;
-  background: white;
-  color: #10b981;
-  border: 1px solid #10b981;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 16px;
-}
-
-.btn-secondary:hover {
-  background: #f0fdf4;
-}
-
-.terms {
-  font-size: 12px;
-  color: #9ca3af;
-  line-height: 1.4;
-}
-
-.terms span {
-  color: #10b981;
-  cursor: pointer;
-}
-
-.terms span:hover {
-  text-decoration: underline;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .create-account-container {
-    padding: 16px;
+@media screen and (min-width: 768px) {
+  body {
+    background: #dbdad8;
+    padding-block: 0;
   }
 
-  .create-account-card {
-    max-width: 100%;
-    padding: 30px 20px;
+  #root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .title {
-    font-size: 22px;
+  .container {
+    flex-direction: row;
+    gap: 4rem;
+    background: var(--white);
+    min-height: unset;
+    border-radius: clamp(3rem, 3.5vw, 4.3rem);
   }
 
-  .logo-circle {
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .create-account-container {
-    padding: 12px;
+  .left-section {
+    position: relative;
+    flex: 1;
   }
 
-  .create-account-card {
-    padding: 24px 16px;
-    max-width: 100%;
+  .left-section #hero--img,
+  .right-section h2 {
+    display: block;
   }
 
-  .title {
-    font-size: 20px;
+  .left-section #hero--img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
-  .logo-circle {
+  .left-section .logo {
+    position: absolute;
+    top: 2rem;
+    left: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+  }
+
+  .left-section .logo img {
     width: 48px;
     height: 48px;
-    font-size: 20px;
   }
 
-  .form-input {
-    padding: 10px 14px;
-    font-size: 14px;
+  .left-section .logo span {
+    font-size: clamp(2rem, 2.5vw, 2.5rem);
   }
 
-  .btn-primary {
-    padding: 10px 16px;
-    font-size: 14px;
+  .caption {
+    position: absolute;
+    bottom: 4rem;
+    left: 3rem;
+    right: 3rem;
+    width: auto;
   }
 
-  .btn-secondary {
-    padding: 8px 16px;
-    font-size: 13px;
+  .caption h1 {
+    font-size: clamp(2rem, 4.35vw, 6rem);
+    font-family: var(--font-accent);
+    font-weight: var(--weight-extrabold);
+    background: #e8e8e8;
+    padding: 1.2rem 1.4rem 1.8rem;
+    border-radius: 1rem;
+    text-align: start;
+    border-top-right-radius: 3rem;
+    text-wrap: balance;
+  }
+
+  .caption h1,
+  .right-section h2 {
+    color: var(--dark-green-caption);
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0.5;
+    padding-right: 3rem;
+  }
+
+  .right-section h2 {
+    font-size: clamp(2.3rem, 2.5vw, 3.2rem);
+    margin: 0;
+  }
+
+  .create-account-form {
+    margin-top: 3rem;
+  }
+
+  .create-account-form,
+  .buttons {
+    align-items: start;
+  }
+
+  .create-account-form input {
+    width: 100%;
+    padding: 1.4rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1.4rem;
+  }
+
+  .password-rules {
+    max-width: 100%;
+    margin-top: -0.6rem;
+  }
+
+  .create-account-form .buttons {
+    margin-top: 2.6rem;
+  }
+
+  .buttons button {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
   }
 }
 
-@media (max-width: 360px) {
-  .create-account-card {
-    padding: 20px 12px;
-    max-width: 100%;
+@media screen and (min-width: 1120px) {
+  .container {
+    gap: 5rem;
   }
 
-  .title {
-    font-size: 18px;
+  .right-section {
+    padding-right: 0;
   }
 
-  .logo-circle {
-    width: 44px;
-    height: 44px;
-    font-size: 18px;
+  .caption h1 {
+    padding-bottom: 2.2rem;
   }
 }
