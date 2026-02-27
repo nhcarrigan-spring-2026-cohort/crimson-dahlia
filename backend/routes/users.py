@@ -12,7 +12,7 @@ def register():
     if User.query.filter_by(email=data['email']).first():
         return jsonify({'msg': 'Email already exists'}), 400
     
-    new_user = User(email=data['email'])
+    new_user = User(username=data['username'], email=data['email'])
     new_user.set_password(data['password'])
 
     db.session.add(new_user)
@@ -51,7 +51,7 @@ def get_user(user_id):
 def delete_user(user_id):
     logged_in_user_id = get_jwt_identity()
 
-    if user_id != logged_in_user_id:
+    if str(user_id) != logged_in_user_id:
         return jsonify({'msg': 'Only users can delete themselves'})
     
     user = User.query.get_or_404(user_id)
@@ -65,16 +65,29 @@ def delete_user(user_id):
 @jwt_required()
 def update_user(user_id):
     logged_in_user_id = get_jwt_identity()
+
+    if(logged_in_user_id != str(user_id)):
+        return jsonify({'msg': 'only user can update their profile'})
+
     user = User.query.get_or_404(user_id)
     data = request.get_json()
 
-    if(logged_in_user_id != user_id):
-        return jsonify({'msg': 'only user can update their profile'})
+    
 
     if 'username' in data:
         user.username = data['username']
     if 'email' in data:
         user.email = data['email']
+    if 'bio' in data:
+        user.bio = data['bio']
+    if 'city' in data:
+        user.city = data['city']
+    if 'state' in data:
+        user.state = data['state']
+    if 'zipcode' in data:
+        user.zipcode = data['zipcode']
+    if 'skills' in data:
+        user.skills = data['skills']
 
     db.session.commit()
 
