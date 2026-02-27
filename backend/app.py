@@ -1,10 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from extensions import  db, migrate
 from routes.users import users_bp
-from routes.tasks import tasks_bp
+from routes.posts import posts_bp
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -25,7 +24,7 @@ with app.app_context():
     db.create_all()
 
 app.register_blueprint(users_bp, url_prefix="/users")
-app.register_blueprint(tasks_bp, url_prefix="/tasks")
+app.register_blueprint(posts_bp, url_prefix="/posts")
 
 @app.get("/health")
 def health_check():
