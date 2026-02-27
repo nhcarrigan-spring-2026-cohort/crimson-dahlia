@@ -3,17 +3,69 @@ import logo from "../assets/logo.png";
 import "./profile.css";
 
 function Profile() {
-  const [bio, setBio] = useState("");
-  const [references, setReferences] = useState(["", "", ""]);
+  const [profile, setProfile] = useState({
+    name: "Your Name",
+    bio: "",
+    skills: [
+      "Painting",
+      "Yard Work",
+      "Housekeeping",
+      "Tech Support",
+      "Dog Walking",
+      "Financial Literacy",
+      "Cooking",
+      "Gardening",
+      "Cleaning",
+      "Tutoring"
+    ],
+    contact: {
+      email: "name@email.com",
+      city: "City, State"
+    },
+    joinedOn: "17 February 2026"
+  });
 
   const handleBioChange = (e) => {
-    setBio(e.target.value);
+    setProfile(prev => ({ ...prev, bio: e.target.value }));
   };
 
-  const handleReferenceChange = (index, value) => {
-    const newRefs = [...references];
-    newRefs[index] = value;
-    setReferences(newRefs);
+  const handleAddSkill = () => {
+    const newSkill = prompt("Enter new skill:");
+    if (newSkill && newSkill.trim()) {
+      setProfile(prev => ({
+        ...prev,
+        skills: [...prev.skills, newSkill.trim()]
+      }));
+    }
+  };
+
+  const handleDeleteSkill = (skillToDelete) => {
+    setProfile(prev => ({
+      ...prev,
+      skills: prev.skills.filter(skill => skill !== skillToDelete)
+    }));
+  };
+
+  const handleEditName = () => {
+    const newName = prompt("Enter new name:", profile.name);
+    if (newName && newName.trim()) {
+      setProfile(prev => ({ ...prev, name: newName.trim() }));
+    }
+  };
+
+  const handleEditContact = () => {
+    const newEmail = prompt("Enter new email:", profile.contact.email);
+    const newCity = prompt("Enter new city:", profile.contact.city);
+    
+    if (newEmail && newCity && newEmail.trim() && newCity.trim()) {
+      setProfile(prev => ({
+        ...prev,
+        contact: {
+          email: newEmail.trim(),
+          city: newCity.trim()
+        }
+      }));
+    }
   };
 
   return (
@@ -42,7 +94,8 @@ function Profile() {
           <div className="top-header">
             <div className="user-name">
               <span className="user-icon">👤</span>
-              <h1>Your Name</h1>
+              <h1>{profile.name}</h1>
+              <button onClick={handleEditName} className="edit-btn">Edit</button>
             </div>
           </div>
 
@@ -55,22 +108,10 @@ function Profile() {
                 <textarea
                   className="bio-box"
                   placeholder="A little bit about this person"
-                  value={bio}
+                  value={profile.bio}
                   onChange={handleBioChange}
                 />
-                <div className="char-count">{bio.length}/500</div>
-              </div>
-
-              <div className="references-section">
-                <label className="section-label">References</label>
-                {references.map((ref, index) => (
-                  <input
-                    key={index}
-                    className="ref-input"
-                    value={ref}
-                    onChange={(e) => handleReferenceChange(index, e.target.value)}
-                  />
-                ))}
+                <div className="char-count">{profile.bio.length}/500</div>
               </div>
             </div>
 
@@ -78,30 +119,33 @@ function Profile() {
             <div className="right-section">
               <div className="skills-header">
                 <label className="section-label">Skills</label>
-                <button className="add-skill">+</button>
+                <button onClick={handleAddSkill} className="add-skill">+</button>
               </div>
 
               <div className="skills-list">
-                <span className="skill-pill">Painting</span>
-                <span className="skill-pill">Yard Work</span>
-                <span className="skill-pill">Housekeeping</span>
-                <span className="skill-pill">Tech Support</span>
-                <span className="skill-pill">Dog Walking</span>
-                <span className="skill-pill">Financial Literacy</span>
-                <span className="skill-pill">Cooking</span>
-                <span className="skill-pill">Gardening</span>
-                <span className="skill-pill">Cleaning</span>
-                <span className="skill-pill">Tutoring</span>
+                {profile.skills.map((skill, index) => (
+                  <span key={index} className="skill-pill">
+                    {skill}
+                    <button 
+                      onClick={() => handleDeleteSkill(skill)} 
+                      className="delete-skill-btn"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
               </div>
-              <div className="more-skills">any more skills too</div>
 
               <div className="contact-box">
-                <p className="contact-title">Contact:</p>
-                <p>name@email.com</p>
-                <p>City, State</p>
+                <div className="contact-header">
+                  <p className="contact-title">Contact:</p>
+                  <button onClick={handleEditContact} className="edit-btn">Edit</button>
+                </div>
+                <p>{profile.contact.email}</p>
+                <p>{profile.contact.city}</p>
               </div>
 
-              <p className="joined">joined on: 17 February 2026</p>
+              <p className="joined">joined on: {profile.joinedOn}</p>
               <p className="delete">Delete Account</p>
             </div>
           </div>
