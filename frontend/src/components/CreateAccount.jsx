@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateAccount.css";
 import heroImg from "../assets/image/heroImg.webp";
 import logo from "../assets/icons/logo.svg";
+import { handleCreateAccount } from "../util/handleCreateAccount";
+import { AuthContext } from "../context/AuthProvider";
 
 const passwordRules = [
   { key: "lower", label: "at least one lowercase letter", test: (s) => /[a-z]/.test(s) },
@@ -13,8 +15,11 @@ const passwordRules = [
 
 function CreateAccount() {
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const ruleStatus = useMemo(
     () => passwordRules.map((r) => ({ ...r, ok: r.test(password) })),
@@ -25,17 +30,35 @@ function CreateAccount() {
   const passwordsMatch = password.length > 0 && password === confirmPassword;
   const canSubmit = passwordOk && passwordsMatch;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!canSubmit) return;
-  };
+  /* Creates a new account! Given the right standards */
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      setError(null);
+  
+      const result = await handleCreateAccount({
+        email: document.getElementById("email").value,
+        password: password,
+        username: document.getElementById("username").value,
+        setUser: setUser
+      });
+  
+      setLoading(false);
+  
+      if (result.success) {
+        console.log("Created account for user:", result.user); // Delete before production - only for testing
+        navigate("/dashboard"); // redirects after login
+      } else {
+        setError(result.error);
+      }
+    };
 
   return (
     <div className="container">
       <div className="left-section">
         <img
           src={heroImg}
-          alt=""
+          alt="Community of people helping each others."
           id="hero--img"
           aria-hidden="true"
         />
@@ -101,8 +124,9 @@ function CreateAccount() {
 
           <div className="buttons">
             <button type="submit" disabled={!canSubmit}>
-              Sign Up
-            </button>
+                {loading ? "Creating Account..." : "Sign Up"}
+              </button>
+              {error && <p className="error">{error}</p>}
 
             <button type="button" onClick={() => navigate("/")}>
               Already have an account? Sign In

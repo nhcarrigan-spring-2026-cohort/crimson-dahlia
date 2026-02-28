@@ -5,18 +5,24 @@ body {
 }
 
 .container {
-  min-height: inherit;
+  /* min-height: inherit; */
+  min-height: 100%;
   justify-content: center;
   max-width: 1440px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  
 }
 
+/* Combinators */
 .container,
 .logo,
 .create-account-form,
 .buttons {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .left-section #hero--img,
@@ -27,8 +33,7 @@ body {
 .logo,
 .create-account-form,
 .buttons {
-  align-items: center;
-  gap: 1.2rem;
+  align-self: center;
 }
 
 .caption h1,
@@ -45,26 +50,32 @@ body {
   font-weight: var(--weight-bold);
 }
 
+/* left section */
 .logo img {
   width: 64px;
   height: 64px;
+  margin-top: 1rem;
 }
 
 .logo span {
   font-family: var(--font-heading);
   font-size: 2.4rem;
+  margin: auto;
   text-align: center;
 }
 
 .caption h1 {
-  margin-block: 0.2rem 0;
+  margin-block: 0;
   color: var(--light-text);
   text-align: center;
 }
 
+/* right section */
 .create-account-form {
-  gap: 1.6rem;
-  margin-top: 5rem;
+  gap: 2rem;
+  margin-top: 4rem;
+  width: 100%;
+  max-width: 360px;
 }
 
 .create-account-form input,
@@ -73,18 +84,18 @@ body {
   max-width: 320px;
 }
 
+.create-account-form {
+  width: 100%;
+  max-width: 360px;
+}
+
 .create-account-form input {
   padding: 1.2rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 3px;
   outline: none;
   background: var(--white);
   color: var(--black);
-  caret-color: var(--black);
-}
-
-.create-account-form input::placeholder {
-  opacity: 1;
 }
 
 input:-webkit-autofill,
@@ -95,26 +106,31 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--black) !important;
 }
 
+/* Password rules */
+
 .password-rules {
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-top: -1.2rem;
   width: 100%;
   max-width: 320px;
   display: grid;
-  gap: 0.6rem;
+  gap: 0.3rem;
 }
 
 .password-rules li {
   display: flex;
   align-items: center;
   font-size: 1.3rem;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .rule-icon {
-  width: 1.8rem;
+  width: 1.5rem;
   text-align: center;
-  margin-right: 0.8rem;
+  content: X;
+  margin-right: 0.5rem;
   font-weight: var(--weight-bold);
 }
 
@@ -122,6 +138,9 @@ input:-webkit-autofill:active {
   color: var(--light-text);
 }
 
+.rule-ok {
+  transform: translateX(4px);
+}
 .rule-ok .rule-text {
   color: #065f46;
 }
@@ -130,13 +149,28 @@ input:-webkit-autofill:active {
   color: #991b1b;
 }
 
+/* buttons */
+
 .buttons {
-  margin-top: 3.4rem;
+  margin-top: 3rem;
+  gap: 1.2rem;
+}
+
+.buttons button {
+  all: unset;
+  box-sizing: border-box;
 }
 
 .buttons button {
   width: 100%;
-  padding-block: 1.4rem;
+  padding: 1.4rem;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 1.4rem;
+  font-weight: var(--weight-semibold);
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
 }
 
 .buttons button:first-child {
@@ -144,14 +178,9 @@ input:-webkit-autofill:active {
   color: var(--white);
 }
 
-.buttons button:first-child:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .buttons button:nth-child(2) {
   background: transparent;
-  color: var(--black);
+  
   border: 1px solid var(--border);
   font-weight: var(--weight-medium);
 }
@@ -162,6 +191,7 @@ input:-webkit-autofill:active {
 
 .buttons button:last-child:hover {
   background: var(--border);
+  color: var(--black);
 }
 
 .buttons button:focus {
@@ -176,10 +206,16 @@ input:-webkit-autofill:active {
   background: #cdcdcd;
 }
 
+.error {
+  color: #991b1b;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+
 @media screen and (min-width: 768px) {
   body {
     background: #dbdad8;
-    padding-block: 0;
+    padding: 0;
   }
 
   #root {
@@ -189,37 +225,49 @@ input:-webkit-autofill:active {
   }
 
   .container {
+    display: flex;
     flex-direction: row;
-    gap: 4rem;
+    gap: 0;
     background: var(--white);
-    min-height: unset;
+    margin: 0 1rem;
+    padding: 0rem;
     border-radius: clamp(3rem, 3.5vw, 4.3rem);
+    overflow: hidden;
+    align-items: stretch;
+    
   }
 
   .left-section {
     position: relative;
     flex: 1;
+    overflow: hidden;
   }
 
-  .left-section #hero--img,
-  .right-section h2 {
+  .left-section img {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .left-section #hero--img {
     display: block;
   }
 
   .left-section #hero--img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .left-section .logo {
     position: absolute;
     top: 2rem;
     left: 2.5rem;
-    display: flex;
-    align-items: center;
     gap: 1rem;
     flex-direction: row;
+    text-shadow: rgb(0 0 0 / 1) 0px 4px 12px;
   }
 
   .left-section .logo img {
@@ -259,23 +307,28 @@ input:-webkit-autofill:active {
   .right-section {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 3rem;
+    text-align: left;
     justify-content: center;
-    flex: 0.5;
-    padding-right: 3rem;
+    align-items: flex-start;
   }
 
   .right-section h2 {
+    display: block;
     font-size: clamp(2.3rem, 2.5vw, 3.2rem);
     margin: 0;
+    padding: 0;
   }
 
   .create-account-form {
-    margin-top: 3rem;
-  }
-
-  .create-account-form,
-  .buttons {
-    align-items: start;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: flex-start;
   }
 
   .create-account-form input {
@@ -284,32 +337,23 @@ input:-webkit-autofill:active {
     border: 1px solid #d1d5db;
     border-radius: 8px;
     font-size: 1.4rem;
-  }
-
-  .password-rules {
-    max-width: 100%;
-    margin-top: -0.6rem;
+    width: 100%;
+    max-width: 360px;
   }
 
   .create-account-form .buttons {
     margin-top: 2.6rem;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 360px;
   }
 
   .buttons button {
     font-size: clamp(1.4rem, 1.6vw, 1.6rem);
   }
-}
 
-@media screen and (min-width: 1120px) {
-  .container {
-    gap: 5rem;
-  }
-
-  .right-section {
-    padding-right: 0;
-  }
-
-  .caption h1 {
-    padding-bottom: 2.2rem;
+  .buttons button:nth-child(2) {
+    background: transparent;
+    color: var(--black);
   }
 }
