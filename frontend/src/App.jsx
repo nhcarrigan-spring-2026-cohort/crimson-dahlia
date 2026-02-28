@@ -4,6 +4,7 @@ import CreateAccount from "./components/CreateAccount";
 import Dashboard from "./components/dashboard";
 import Profile from "./components/Profile";
 import MyTasks from "./components/MyTasks";
+import HelpRequest from "./components/HelpRequest";
 
 function App() {
   return (
@@ -14,9 +15,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/my-tasks" element={<MyTasks />} />
+        <Route path="/help-request" element={<HelpRequest />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
