@@ -1,38 +1,91 @@
-import React from 'react';
-import './Login.css';
-import communityImg from '../assets/community-aid-bg.jpg';
+import { useState, useContext } from 'react';
+import heroImg from '../assets/image/heroImg.webp';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import './CreateAccount.css'; // Reusing styles from CreateAccount for consistency
+import { handleLogin } from '../functions/handleLogin';
+import { AuthContext } from '../context/AuthProvider';
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const result = await handleLogin(email, password, setUser);
+
+    setLoading(false);
+
+    if (result.success) {
+      console.log("Logged in user:", result.user);
+      navigate("/dashboard"); // redirect after login
+    } else {
+      setError(result.error);
+    }
+  };
+
+  
+  const canSubmit = password.length > 0; // Update for logic to enable submit button
+
   return (
-    <div className="login-page">
-      <div className="login-container">
-        {/* Left Side: Image & Branding */}
-        <div className="login-image-section" style={{ backgroundImage: `url(${communityImg})` }}>
-          <div className="brand-logo">
-            <img src={logo} alt="Community Aid" className="logo-icon" />
+      <div className="container">
+        <div className="left-section">
+          <img src={heroImg} alt="Hero Image" id="hero--img" aria-hidden="true" />
+  
+          <div className="logo">
+            <img src={logo} alt="Logo" />
             <span>Community Aid</span>
           </div>
-          
-          <div className="image-overlay-text">
-            <h1>Help your neighbors,<br />build your community.</h1>
+  
+          <div className="caption">
+            <h1>Help your neighbors, build your community.</h1>
           </div>
         </div>
-
-        {/* Right Side: Sign In Form */}
-        <div className="login-form-section">
-          <div className="form-wrapper">
-            <h2>Sign In</h2>
-            <form>
-              <input type="email" placeholder="Email address" className="login-input" />
-              <input type="password" placeholder="Password" className="login-input" />
-              
-              <button type="submit" className="btn-sign-in">Sign In</button>
-              <button type="button" className="btn-create-account">Create an account</button>
-            </form>
-          </div>
+  
+        <div className="right-section">
+          <h2>Sign In</h2>
+  
+          <form className="create-account-form" onSubmit={onSubmit}>
+            <input
+              type="email"
+              placeholder="Email address"
+              name="email"
+              id="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+  
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              id="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+  
+            <div className="buttons">
+              <button type="submit" disabled={!canSubmit}>
+                {loading ? "Signing In..." : "Sign In"}
+              </button>
+              {error && <p className="error">{error}</p>}
+  
+              <button type="button" onClick={() => navigate("/create-account")}>
+                Don't have an account? Sign Up
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
-  );
+    );
+
 }

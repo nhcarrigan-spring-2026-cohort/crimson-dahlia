@@ -33,6 +33,13 @@ def login():
 
     return jsonify(access_token=access_token), 200
 
+@users_bp.get('/me')
+@jwt_required()
+def get_current_user():
+    user_id = get_jwt_identity()
+    user = User.query.get_or_404(user_id)
+    return jsonify(user.to_dict()), 200
+
 
 @users_bp.get('/')
 def get_all_users():
