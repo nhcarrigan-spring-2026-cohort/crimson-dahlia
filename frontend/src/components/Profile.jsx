@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logo from "../assets/logo.png";
 import "./profile.css";
 import { updateProfile } from "../util/updateProfile";
 import { getProfile } from "../util/getProfile";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import { deleteProfile } from "../util/deleteProfile";
 
 
 
@@ -10,6 +13,8 @@ function Profile() {
   const token = localStorage.getItem("authToken");
   // const { token } = React.useContext(AuthContext);
   const [profile, setProfile] = useState({}); // Fetch profile data from backend on load 
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!token) return;
@@ -98,6 +103,35 @@ React.useEffect(() => {
       }
     }
   };
+
+  const handleLogout = async () => {
+    logout();
+    navigate("/");
+  }
+
+  const handleDelete = async () => {
+
+    const confirmDelete = window.confirm("Are you sure you want to permanently delete this account? This action cannot be undone.");
+
+    // could add more/ different blockers here if desired
+
+    if (!confirmDelete) return;
+
+    if (!profile.id) {
+      console.log("User ID not found"); // for debugging really
+    }
+
+    const result = await deleteProfile(profile.id, token);
+
+    if (result.success){
+      logout();
+      navigate("/");
+    } else {
+      alert("Failed to delete account: " + result.error);
+    }
+
+  }
+
 if (Object.keys(profile).length === 0) {
     return (<div className="profile-container">
       {/* Sidebar */}
@@ -205,7 +239,9 @@ if (Object.keys(profile).length === 0) {
               </div>
 
               <p className="joined">joined on: {new Date(profile.created_at).toLocaleDateString('en-US')}</p>
-              <p className="delete">Delete Account</p>
+              <p className ="delete" onClick={handleLogout}>Logout</p>
+              <p className="delete" onClick={handleDelete}>Delete Account</p>
+              
             </div>
           </div>
         </div>
