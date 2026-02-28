@@ -5,6 +5,7 @@ from extensions import db
 
 users_bp = Blueprint("users", __name__)
 
+# Register a new user with username, email, and password. Returns the created user object.
 @users_bp.post('/register')
 def register():
     data = request.get_json()
@@ -20,6 +21,7 @@ def register():
 
     return jsonify(new_user.to_dict()), 201
 
+# Log in a user with email and password. Returns a JWT access token if successful.
 @users_bp.post('/login')
 def login():
     data = request.get_json()
@@ -33,6 +35,7 @@ def login():
 
     return jsonify(access_token=access_token), 200
 
+# Get the currently logged in user's profile. Requires a valid JWT access token. (Important for the frontend to display user info and for authentication)
 @users_bp.get('/me')
 @jwt_required()
 def get_current_user():
@@ -40,19 +43,21 @@ def get_current_user():
     user = User.query.get_or_404(user_id)
     return jsonify(user.to_dict()), 200
 
-
+# Get a list of all users. This is a public endpoint that does not require authentication. (Useful for displaying a list of users)
 @users_bp.get('/')
 def get_all_users():
     users = User.query.all()
 
     return jsonify([user.to_dict() for user in users])
 
+# Get a specific user by their ID. This is a public endpoint that does not require authentication. (Useful for displaying user profiles)
 @users_bp.get('/<int:user_id>')
 def get_user(user_id):
     user = User.query.get_or_404(user_id)
 
     return jsonify(user.to_dict())
 
+# Delete a user by their ID. Requires a valid JWT access token and the user can only delete themselves. (Important for allowing users to delete their accounts - a data privacy requirement for most apps)
 @users_bp.delete('/<user_id>')
 @jwt_required()
 def delete_user(user_id):
@@ -68,6 +73,7 @@ def delete_user(user_id):
 
     return jsonify({'msg': 'User successfully deleted'})
 
+# Update a user's profile by their ID. Requires a valid JWT access token and the user can only update themselves. (Important for allowing users to update their profiles)
 @users_bp.put('/<user_id>')
 @jwt_required()
 def update_user(user_id):
@@ -78,8 +84,6 @@ def update_user(user_id):
 
     user = User.query.get_or_404(user_id)
     data = request.get_json()
-
-    
 
     if 'username' in data:
         user.username = data['username']

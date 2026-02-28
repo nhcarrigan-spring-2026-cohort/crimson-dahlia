@@ -1,4 +1,4 @@
-const BACKEND_ROUTE =  "http://localhost:5000";
+const BACKEND_ROUTE =  "http://localhost:5000"; // Update this if your backend is running on a different URL or port
 
 export const handleCreateAccount = async ({ email, password, username, setUser }) => {
   try {
@@ -41,6 +41,7 @@ export const handleCreateAccount = async ({ email, password, username, setUser }
     }
 
     const user = await userRes.json();
+
     setUser(user); // updates user in context
 
     return { success: true, user };

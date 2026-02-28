@@ -1,13 +1,10 @@
 import { useState, useEffect, createContext } from "react";
-// import { AuthContext } from "./AuthContext";
 
-const BACKEND_ROUTE = "http://localhost:5000";
-const FRONTEND_ROUTE = "http://localhost:5173";
+const BACKEND_ROUTE = "http://localhost:5000"; // Update this if your backend is running on a different URL or port
 
+// DO NOT REMOVE THE NEXT COMMENT - THIS IS REQUIRED TO PREVENT A BUG WITH VITE AND REACT REFRESH
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
-
-
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -30,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (!res.ok) {
-          localStorage.removeItem("authToken");
+          localStorage.removeItem("authToken"); // Token is invalid or expired, remove it
           setLoading(false);
           return;
         }
@@ -38,7 +35,7 @@ export const AuthProvider = ({ children }) => {
         const data = await res.json();
         setUser(data);
       } catch (err) {
-        localStorage.removeItem("authToken");
+        localStorage.removeItem("authToken"); // On error, assume token is invalid and remove it
         console.error("Error restoring user:", err);
       } finally {
         setLoading(false);
@@ -49,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("authToken"); // Clear token from localStorage
     setUser(null);
   };
 

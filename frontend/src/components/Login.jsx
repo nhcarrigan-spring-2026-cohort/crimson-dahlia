@@ -3,7 +3,7 @@ import heroImg from '../assets/image/heroImg.webp';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import './CreateAccount.css'; // Reusing styles from CreateAccount for consistency
-import { handleLogin } from '../functions/handleLogin';
+import { handleLogin } from '../util/handleLogin';
 import { AuthContext } from '../context/AuthProvider';
 
 export default function Login() {
@@ -14,6 +14,7 @@ export default function Login() {
    const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
+  /* Logs a user in with email and password! Given they match an account in the database */
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -24,15 +25,13 @@ export default function Login() {
     setLoading(false);
 
     if (result.success) {
-      console.log("Logged in user:", result.user);
+      console.log("Logged in user:", result.user); // Delete before production - only for testing
       navigate("/dashboard"); // redirect after login
     } else {
       setError(result.error);
     }
   };
 
-  
-  const canSubmit = password.length > 0; // Update for logic to enable submit button
 
   return (
       <div className="container">
@@ -74,7 +73,7 @@ export default function Login() {
             />
   
             <div className="buttons">
-              <button type="submit" disabled={!canSubmit}>
+              <button type="submit" disabled={loading}>
                 {loading ? "Signing In..." : "Sign In"}
               </button>
               {error && <p className="error">{error}</p>}

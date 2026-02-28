@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./CreateAccount.css";
 import heroImg from "../assets/image/heroImg.webp";
 import logo from "../assets/icons/logo.svg";
-import { handleCreateAccount } from "../functions/handleCreateAccount";
+import { handleCreateAccount } from "../util/handleCreateAccount";
 import { AuthContext } from "../context/AuthProvider";
 
 const passwordRules = [
@@ -30,6 +30,7 @@ function CreateAccount() {
   const passwordsMatch = password.length > 0 && password === confirmPassword;
   const canSubmit = passwordOk && passwordsMatch;
 
+  /* Creates a new account! Given the right standards */
   const handleSubmit = async (e) => {
       e.preventDefault();
       setLoading(true);
@@ -45,8 +46,8 @@ function CreateAccount() {
       setLoading(false);
   
       if (result.success) {
-        console.log("Created account for user:", result.user);
-        navigate("/dashboard"); // redirect after login
+        console.log("Created account for user:", result.user); // Delete before production - only for testing
+        navigate("/dashboard"); // redirects after login
       } else {
         setError(result.error);
       }
