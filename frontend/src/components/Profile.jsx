@@ -10,12 +10,12 @@ import { deleteProfile } from "../util/deleteProfile";
 
 
 function Profile() {
-  const token = localStorage.getItem("authToken");
-  // const { token } = React.useContext(AuthContext);
+  const token = localStorage.getItem("authToken"); // context!
   const [profile, setProfile] = useState({}); // Fetch profile data from backend on load 
-  const { logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext); // clear the context to logout
   const navigate = useNavigate();
 
+  /* Always keeps updated data */
   React.useEffect(() => {
     if (!token) return;
     
@@ -31,29 +31,30 @@ function Profile() {
     fetchProfile(); // fetched profile data
   }, [token]);
 
-const [bioDraft, setBioDraft] = useState(profile.bio || "");
+  const [bioDraft, setBioDraft] = useState(profile.bio || "");
 
-React.useEffect(() => {
-  setBioDraft(profile.bio || "");
-}, [profile.bio]);
-
-
-
-React.useEffect(() => {
-  if (!token) return;
-
-  const handler = setTimeout(async () => {
-    if (!profile?.id) return; // Ensure profile is loaded before trying to update
-    const result = await updateProfile(profile.id, { bio: bioDraft }, token);
-    if (result.success) setProfile(result.user);
-  }, 500); // wait 500ms after user stops typing
- 
-  return () => {
-    clearTimeout(handler); // clear previous timer on every keystroke
-  }
-}, [bioDraft, token]);
+  /* Keeps visible bio up-to-date */
+  React.useEffect(() => {
+    setBioDraft(profile.bio || "");
+  }, [profile.bio]);
 
 
+  /* Updates bio every 500ms (instead of on change -> debouncing) */
+  React.useEffect(() => {
+    if (!token) return;
+
+    const handler = setTimeout(async () => {
+      if (!profile?.id) return; // Ensure profile is loaded before trying to update
+      const result = await updateProfile(profile.id, { bio: bioDraft }, token);
+      if (result.success) setProfile(result.user);
+    }, 500); // wait 500ms after user stops typing
+  
+    return () => {
+      clearTimeout(handler); // clear previous timer on every keystroke
+    }
+  }, [bioDraft, token]);
+
+  /* JS prompt that lets you add a new skill to the skills array */
   const handleAddSkill = async () => {
     const newSkill = prompt("Enter new skill:");
     if (newSkill && newSkill.trim()) {
@@ -66,6 +67,7 @@ React.useEffect(() => {
     }
   };
 
+  /* When you press x on a skill, it deletes it from the skill array */
   const handleDeleteSkill = async (skillToDelete) => {
     const newData = await updateProfile(profile.id, { skills: profile.skills.filter(skill => skill !== skillToDelete) }, token); // Save to backend on change
     if (newData && newData.user) {
@@ -75,6 +77,7 @@ React.useEffect(() => {
     }
   };
 
+  /* JS prompt that lets you change the user's name */
   const handleEditName = async () => {
     const newName = prompt("Enter new name:", profile.username);
     if (newName && newName.trim()) {
@@ -89,6 +92,7 @@ React.useEffect(() => {
     }
   };
 
+  /* JS prompts that let you update all the user's contact info */
   const handleEditContact = async () => {
     const newEmail = prompt("Enter new email:", profile.email);
     const newCity = prompt("Enter new city:", profile.city);
@@ -104,11 +108,13 @@ React.useEffect(() => {
     }
   };
 
+  /* clears context upon pressing 'logout' */
   const handleLogout = async () => {
     logout();
     navigate("/");
   }
 
+  /* Double checks and deletes account from db */
   const handleDelete = async () => {
 
     const confirmDelete = window.confirm("Are you sure you want to permanently delete this account? This action cannot be undone.");
@@ -132,33 +138,35 @@ React.useEffect(() => {
 
   }
 
-if (Object.keys(profile).length === 0) {
-    return (<div className="profile-container">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="logo">
-          <img src={logo} alt="Community Aid" className="logo-img" />
-          <h2>
-            Community <br /> Aid
-          </h2>
-        </div>
+  /* Temporary loading profile page */
+  if (Object.keys(profile).length === 0) {
+      return (<div className="profile-container">
+        {/* Sidebar */}
+        <aside className="sidebar">
+          <div className="logo">
+            <img src={logo} alt="Community Aid" className="logo-img" />
+            <h2>
+              Community <br /> Aid
+            </h2>
+          </div>
 
-        <ul className="menu">
-          <li>Home</li>
-          <li className="active">Profile</li>
-          <li>My Tasks</li>
+          <ul className="menu">
+            <a href="/dashboard"><li>Home</li></a>
+            <a href="/profile"><li className="active">Profile</li></a>
+            <a href="/my-tasks"><li>My Tasks</li></a>
         </ul>
-      </aside>
+        </aside>
 
-      {/* Main */}
-      <main className="main-content">
-        {/* Body */}
-        <div> Loading Profile Data... </div>
-      </main>
-    </div>
-  );
-}
+        {/* Main */}
+        <main className="main-content">
+          {/* Body */}
+          <div> Loading Profile Data... </div>
+        </main>
+      </div>
+    );
+  }
 
+  /* Loaded Profile Page */
   return (
     <div className="profile-container">
       {/* Sidebar */}
