@@ -1,359 +1,330 @@
 body {
-  background: var(--white);
-  color: var(--black);
-  padding: 1rem 1.6rem;
+    background: var(--white);
+    color: var(--black);
+    padding: 1rem 1.6rem;
 }
 
 .container {
-  /* min-height: inherit; */
-  min-height: 100%;
-  justify-content: center;
-  max-width: 1440px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  
+    min-height: 100%;
+    justify-content: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Combinators */
 .container,
 .logo,
 .create-account-form,
 .buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .left-section #hero--img,
 .right-section h2 {
-  display: none;
+    display: none;
 }
 
 .logo,
 .create-account-form,
 .buttons {
-  align-self: center;
+    align-self: center;
 }
 
 .caption h1,
 .buttons button,
 .create-account-form input,
 .create-account-form input::placeholder {
-  font-family: var(--font-main);
-  font-weight: var(--weight-regular);
-  font-size: 1.4rem;
+    font-family: var(--font-main);
+    font-weight: var(--weight-regular);
+    font-size: 1.4rem;
 }
 
 .logo span,
 .buttons button {
-  font-weight: var(--weight-bold);
+    font-weight: var(--weight-bold);
 }
 
-/* left section */
 .logo img {
-  width: 64px;
-  height: 64px;
-  margin-top: 1rem;
+    width: 64px;
+    height: 64px;
+    margin-top: 1rem;
 }
 
 .logo span {
-  font-family: var(--font-heading);
-  font-size: 2.4rem;
-  margin: auto;
-  text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    margin: auto;
+    text-align: center;
 }
 
 .caption h1 {
-  margin-block: 0;
-  color: var(--light-text);
-  text-align: center;
+    margin-block: 0;
+    color: var(--light-text);
+    text-align: center;
 }
 
-/* right section */
 .create-account-form {
-  gap: 2rem;
-  margin-top: 4rem;
-  width: 100%;
-  max-width: 360px;
+    gap: 2rem;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 360px;
 }
 
 .create-account-form input,
 .buttons {
-  width: 100%;
-  max-width: 320px;
+    width: 100%;
+    max-width: 320px;
 }
 
 .create-account-form {
-  width: 100%;
-  max-width: 360px;
+    width: 100%;
+    max-width: 360px;
 }
 
 .create-account-form input {
-  padding: 1.2rem;
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  outline: none;
-  background: var(--white);
-  color: var(--black);
+    padding: 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    outline: none;
+    background: var(--white);
+    color: var(--black);
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--white) inset !important;
-  -webkit-text-fill-color: var(--black) !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--white) inset !important;
+    -webkit-text-fill-color: var(--black) !important;
 }
 
-/* Password rules */
-
 .password-rules {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-top: -1.2rem;
-  width: 100%;
-  max-width: 320px;
-  display: grid;
-  gap: 0.3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: -1.2rem;
+    width: 100%;
+    max-width: 320px;
+    display: grid;
+    gap: 0.3rem;
 }
 
 .password-rules li {
-  display: flex;
-  align-items: center;
-  font-size: 1.3rem;
-  transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .rule-icon {
-  width: 1.5rem;
-  text-align: center;
-  content: X;
-  margin-right: 0.5rem;
-  font-weight: var(--weight-bold);
+    width: 1.5rem;
+    text-align: center;
+    content: X;
+    margin-right: 0.5rem;
+    font-weight: var(--weight-bold);
 }
 
 .rule-text {
-  color: var(--light-text);
+    color: var(--light-text);
 }
 
 .rule-ok {
-  transform: translateX(4px);
+    transform: translateX(4px);
 }
+
 .rule-ok .rule-text {
-  color: #065f46;
+    color: #065f46;
 }
 
 .rule-not-ok .rule-text {
-  color: #991b1b;
+    color: #991b1b;
 }
-
-/* buttons */
 
 .buttons {
-  margin-top: 3rem;
-  gap: 1.2rem;
+    margin-top: 3rem;
+    gap: 1.2rem;
 }
 
 .buttons button {
-  all: unset;
-  box-sizing: border-box;
+    all: unset;
+    box-sizing: border-box;
 }
 
 .buttons button {
-  width: 100%;
-  padding: 1.4rem;
-  border-radius: 8px;
-  font-family: var(--font-main);
-  font-size: 1.4rem;
-  font-weight: var(--weight-semibold);
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.2s ease, opacity 0.2s ease;
+    width: 100%;
+    padding: 1.4rem;
+    border-radius: 8px;
+    font-family: var(--font-main);
+    font-size: 1.4rem;
+    font-weight: var(--weight-semibold);
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s ease, opacity 0.2s ease;
 }
 
 .buttons button:first-child {
-  background: var(--dark-green);
-  color: var(--white);
+    background: var(--dark-green);
+    color: var(--white);
 }
 
 .buttons button:nth-child(2) {
-  background: transparent;
-  
-  border: 1px solid var(--border);
-  font-weight: var(--weight-medium);
+    background: transparent;
+    border: 1px solid var(--border);
+    font-weight: var(--weight-medium);
 }
 
 .buttons button:first-child:hover {
-  background: var(--dark-green-hover);
+    background: var(--dark-green-hover);
 }
 
 .buttons button:last-child:hover {
-  background: var(--border);
-  color: var(--black);
+    background: var(--border);
+    color: var(--black);
 }
 
 .buttons button:focus {
-  outline: none;
+    outline: none;
 }
 
 .buttons button:first-child:active {
-  background: var(--dark-green-caption);
+    background: var(--dark-green-caption);
 }
 
 .buttons button:last-child:active {
-  background: #cdcdcd;
+    background: #cdcdcd;
 }
 
 .error {
-  color: #991b1b;
-  margin-top: 1rem;
-  font-size: 1.3rem;
+    color: #991b1b;
+    margin-top: 1rem;
+    font-size: 1.3rem;
 }
 
 @media screen and (min-width: 768px) {
-  body {
-    background: #dbdad8;
-    padding: 0;
-  }
-
-  #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    background: var(--white);
-    margin: 0 1rem;
-    padding: 0rem;
-    border-radius: clamp(3rem, 3.5vw, 4.3rem);
-    overflow: hidden;
-    align-items: stretch;
-    
-  }
-
-  .left-section {
-    position: relative;
-    flex: 1;
-    overflow: hidden;
-  }
-
-  .left-section img {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .left-section #hero--img {
-    display: block;
-  }
-
-  .left-section #hero--img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .left-section .logo {
-    position: absolute;
-    top: 2rem;
-    left: 2.5rem;
-    gap: 1rem;
-    flex-direction: row;
-    text-shadow: rgb(0 0 0 / 1) 0px 4px 12px;
-  }
-
-  .left-section .logo img {
-    width: 48px;
-    height: 48px;
-  }
-
-  .left-section .logo span {
-    font-size: clamp(2rem, 2.5vw, 2.5rem);
-  }
-
-  .caption {
-    position: absolute;
-    bottom: 4rem;
-    left: 3rem;
-    right: 3rem;
-    width: auto;
-  }
-
-  .caption h1 {
-    font-size: clamp(2rem, 4.35vw, 6rem);
-    font-family: var(--font-accent);
-    font-weight: var(--weight-extrabold);
-    background: #e8e8e8;
-    padding: 1.2rem 1.4rem 1.8rem;
-    border-radius: 1rem;
-    text-align: start;
-    border-top-right-radius: 3rem;
-    text-wrap: balance;
-  }
-
-  .caption h1,
-  .right-section h2 {
-    color: var(--dark-green-caption);
-  }
-
-  .right-section {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin: 0;
-    padding: 3rem;
-    text-align: left;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .right-section h2 {
-    display: block;
-    font-size: clamp(2.3rem, 2.5vw, 3.2rem);
-    margin: 0;
-    padding: 0;
-  }
-
-  .create-account-form {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .create-account-form input {
-    width: 100%;
-    padding: 1.4rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1.4rem;
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .create-account-form .buttons {
-    margin-top: 2.6rem;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .buttons button {
-    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
-  }
-
-  .buttons button:nth-child(2) {
-    background: transparent;
-    color: var(--black);
-  }
+    body {
+        background: #dbdad8;
+        padding: 0;
+    }
+    #root {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .container {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        background: var(--white);
+        margin: 0 1rem;
+        padding: 0rem;
+        border-radius: clamp(3rem, 3.5vw, 4.3rem);
+        overflow: hidden;
+        align-items: stretch;
+    }
+    .left-section {
+        position: relative;
+        flex: 1;
+        overflow: hidden;
+    }
+    .left-section img {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .left-section #hero--img {
+        display: block;
+    }
+    .left-section #hero--img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .left-section .logo {
+        position: absolute;
+        top: 2rem;
+        left: 2.5rem;
+        gap: 1rem;
+        flex-direction: row;
+        text-shadow: rgb(0 0 0 / 1) 0px 4px 12px;
+    }
+    .left-section .logo img {
+        width: 48px;
+        height: 48px;
+    }
+    .left-section .logo span {
+        font-size: clamp(2rem, 2.5vw, 2.5rem);
+    }
+    .caption {
+        position: absolute;
+        bottom: 4rem;
+        left: 3rem;
+        right: 3rem;
+        width: auto;
+    }
+    .caption h1 {
+        font-size: clamp(2rem, 4.35vw, 6rem);
+        font-family: var(--font-accent);
+        font-weight: var(--weight-extrabold);
+        background: #e8e8e8;
+        padding: 1.2rem 1.4rem 1.8rem;
+        border-radius: 1rem;
+        text-align: start;
+        border-top-right-radius: 3rem;
+        text-wrap: balance;
+    }
+    .caption h1,
+    .right-section h2 {
+        color: var(--dark-green-caption);
+    }
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin: 0;
+        padding: 3rem;
+        text-align: left;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .right-section h2 {
+        display: block;
+        font-size: clamp(2.3rem, 2.5vw, 3.2rem);
+        margin: 0;
+        padding: 0;
+    }
+    .create-account-form {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        align-items: flex-start;
+    }
+    .create-account-form input {
+        width: 100%;
+        padding: 1.4rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 1.4rem;
+        width: 100%;
+        max-width: 360px;
+    }
+    .create-account-form .buttons {
+        margin-top: 2.6rem;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 360px;
+    }
+    .buttons button {
+        font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    }
+    .buttons button:nth-child(2) {
+        background: transparent;
+        color: var(--black);
+    }
 }
